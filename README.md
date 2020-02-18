@@ -12,5 +12,5 @@ At this time, there are five different packet type/subtypes available with some 
 that are customizable. Default values for the packets are summarized at the end of this 
 document, for details on all fields refer to airdung.h.
 
-airdung2 is dependent on the wifi chipset and drivers used. Notes below outline 'best 
-practices' to date.
+airdung2 is dependent on the wifi chipset and drivers used. See notes in docs for best 
+practices.
