@@ -1,0 +1,117 @@
+﻿pktSend (Version 0.1.0 beta)
+
+General
+-------
+
+pktSend is a linux utility to build custom 802.11 packets and send them to a network 
+interface (as a raw socket). 
+
+Currently pktSend only supports three modes of operation: 
+
+  Mode 1: IEEE 802.11 Probe request packet
+
+  Mode 2: IEEE 802.11 Null Data Packet
+
+  Mode 3: IEEE 802.11 Data Packet
+
+pktSend options:
+
+  -i <interface>  specifies the network interface that will be used for sending packets.
+
+  -x <channel>  specifies the channel to send the packet on. This can be any valid channel 
+  supported by the wireless LAN network card and driver. 
+
+  -t <dwell time (ms)> specifies the time, in milli-seconds, between each packet sent. This 
+  allows the user to control the rate at which packets are sent.
+
+  -m <mode> specifies the modes of operation (described above).
+
+  -r <rate (Mb/s)> specifies the data rate, in Mb/s, of the transmitted packet. Note that 
+  certain packet types, such as control and management, can only be sent at certain data 
+  rates (1Mb/s). All other packets can be sent at any data-rate supported by the wireless 
+  LAN card and driver.
+ 
+  -h   displays the help page.
+
+  -sa <XX:XX:XX:XX:XX:XX> specifies the source MAC address of the packet. 
+
+  -d <XX:XX:XX:XX:XX:XX> specifies the destination MAC address of the packet. 
+
+  -b <XX:XX:XX:XX:XX:XX> specifies the bssid of the packet. 
+
+  -ssid specifies the ssid of the network (probe request only).
+
+Examples
+--------
+
+  pktSend -i ath1 -m 1 -sa 00:11:22:33:44:55 -x 9 -bssid testing -t 1000
+
+  will send a probe request packet on channel 9, interface ath1 with an ssid 
+  called "testing" and a source MAC address of 00:11:22:33:44:55. The bssid and
+  destination address will both be ff:ff:ff:ff:ff:ff (broadcast). The rate will
+  be 1 pkt/second and the data rate will default to 1 Mb/s.
+
+  pktsend -i ath1 -m 2 -sa 00:11:22:33:44:55  -d 00:22:22:22:22:22 \ 
+       -b bb:bb:bb:bb:bb:bb:bb -x 9 -r 11 -t 200
+
+  will send a null data packet on channel 9, interface ath1 at a rate of 5
+  pkts/sec and a data rate of 11Mb/s. The source MAC address is 00:11:22:33:44:55,
+  the destination MAC address is 00:22:22:22:22:22 and bssid is bb:bb:bb:bb:bb:bb.
+
+
+Packet Content
+--------------
+
+Mode 1
+
+  When mode 1 is selected it will send a broadcast probe request packet with a default 
+  source MAC address of bb:bb:bb:bb:bb:bb. There will be a reserved element ID 82 (0x52)
+  with a length of 8 bytes and a value of 00-fe-34-12-c0-2d-b7-00.
+
+Mode 2
+
+  When mode 2 is selected it will send a standard IEEE 802.11 null data packet.
+
+Mode 3
+
+  When mode 3 is selected it will send a NetBIOS data packet.
+
+
+In all cases the default BSSID and destination address is ff:ff:ff:ff:ff:ff (broadcast).
+
+
+Appendix A: Monitor mode HOW-TO
+-------------------------------
+
+This section describes how to get a wireless LAN NIC card into monitor mode (the state 
+necessary for pktSend to function properly).
+
+Note: At the time of writing of this document, the only verified driver is the Atheros 
+Madwifi driver version 0.9.4.
+
+	1) Verify that you are using Madwifi version 0.9.4 (check this with the dmesg command)
+   	2) Type the following:
+	
+		wlanconfig ath create wlandev wifi0 wlanmode monitor
+
+This will return with an interface with the name athX where “X” is the next higher number of 
+your normal Atheros interface. Take note of this interface number since you will be using it 
+as your outgoing interface.
+
+   	3) Issue the pktSend command:
+
+		pktSend -i ath1 -x 9 -m 1 -t 200
+
+ 
+	4) After you are finished, you may need to take down the virtual AP by typing the 
+	following:
+
+		wlanconfig athX destroy 
+
+	where: athX is the virtual AP that was created in step 2).
+
+
+
+
+
+

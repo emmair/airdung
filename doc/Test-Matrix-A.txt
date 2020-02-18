@@ -1,0 +1,35 @@
+Test Matrix A
+-------------
+
+Each for delay of: 	(1) 100  uS
+			(2) 1000 uS
+			(3) 4000 uS
+
+(Anything below 100uS will be up against the resolution of the system
+clocks.)
+
+ Rate	      Beacon Probe Req 	    Null Data  Data
+---------------------------------------------------
+  1.0 mb/s	X	X		X	X
+  2.0 mb/s				X	X
+  5.5 mb/s				X	X
+  6.0 mb/s				X	X
+  9.0 mb/s				X	X
+ 11.0 mb/s				X	X
+ 12.0 mb/s				X	X
+ 18.0 mb/s				X	X
+ 24.0 mb/s				X	X
+ 36.0 mb/s				X	X
+ 48.0 mb/s				X	X
+ 54.0 mb/s				X	X
+
+
+Default Packet Sizes (bytes)
+----------------------------
+
+Beacon		330 
+Probe Request	78
+Null Data	60
+Data		1040
+
+
