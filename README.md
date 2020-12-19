@@ -7,6 +7,7 @@ updated: 1/14/2016 - emm
 
 --------------------------------------------------------------------------------------
 
+Air Diagnostic Utilities - Next Generation (Air DU-NG)
 airdung2 is a packet generation tool for testing the IEEE 802.11 a/b/g/n specification.
 
 At this time, there are five different packet type/subtypes available with some fields
