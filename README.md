@@ -4,6 +4,9 @@ wireless diagnostic tools
 ## Prerequisites
 
 ``apt install -y iw net-tools``
+
+``sudo apt-get install firmware-linux-free``
+
 ## Building
 
 ``cd airdung-2.2/ ``
