@@ -2,7 +2,7 @@
 wireless diagnostic tools
 
 airdung2 notes - emm 2/2014
-## Pre-requisites
+## Prerequisites
 
 ``apt install -y iw net-tools``
 ## Building
