@@ -2,7 +2,13 @@
 wireless diagnostic tools
 
 airdung2 notes - emm 2/2014
+##Pre-requisites
 
+``apt install -y iw net-tools``
+##Building
+
+``cd airdung-2.2/``
+``make``
 updated: 1/14/2016 - emm
 
 --------------------------------------------------------------------------------------
