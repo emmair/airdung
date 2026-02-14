@@ -6,7 +6,8 @@ wireless diagnostic tools
 ``apt install -y iw net-tools``
 ## Building
 
-``cd airdung-2.2/``
+``cd airdung-2.2/ ``
+
 ``make``
 
 
