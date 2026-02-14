@@ -1,7 +1,6 @@
 # airdung
 wireless diagnostic tools
 
-airdung2 notes - emm 2/2014
 ## Prerequisites
 
 ``apt install -y iw net-tools``
